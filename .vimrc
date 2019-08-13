@@ -34,6 +34,9 @@ Plugin 'rdnetto/YCM-Generator'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-obsession'
+Plugin 'dylanaraps/wal.vim'
+Plugin 'vimwiki/vimwiki'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 
