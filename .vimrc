@@ -173,3 +173,9 @@ nnoremap <C-g> :Rg<Cr>
 
 " Set syntastic checker for python
 let g:syntastic_python_checkers = ['flake8']
+
+" Disable search highlighting on enter
+nnoremap <Cr> :noh<Cr>
+
+" Set colorscheme
+colorscheme wal
