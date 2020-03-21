@@ -37,6 +37,9 @@ Plugin 'tpope/vim-obsession'
 Plugin 'dylanaraps/wal.vim'
 Plugin 'vimwiki/vimwiki'
 Plugin 'rust-lang/rust.vim'
+Plugin 'lervag/vimtex'
+Plugin 'xuhdev/vim-latex-live-preview'
+Plugin 'leafgarland/typescript-vim'
 
 call vundle#end()
 
@@ -106,11 +109,7 @@ if !exists('g:airline_symbols')
 endif
 
 " unicode symbols
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
 let g:airline_symbols.whitespace = 'Ξ'
 
 " airline symbols
@@ -124,7 +123,7 @@ let g:airline_symbols.linenr = ''
 
 let g:airline_solarized_bg='dark'
 
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 1
 let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.5.0/src'
 set completeopt-=preview
 
@@ -153,6 +152,9 @@ nnoremap <C-F> :Autoformat markdown<CR>
 " Make enter key accept autocompletion
 let g:ycm_key_list_stop_completion = [ '<Enter>' ]
 
+" Bind documentation for C family languages
+nnoremap <C-Q> :YcmCompleter GetDoc<CR>
+
 " Configure syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -162,6 +164,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+"let g:syntastic_c_checkers = ['g++']
+"let g:syntastic_cpp_checkers = ['g++']
+let g:syntastic_cpp_compiler_options = '--std=c++17'
 nnoremap <F9> :SyntasticReset<CR>
 
 " Add fzf to vim runtime
@@ -174,8 +179,16 @@ nnoremap <C-g> :Rg<Cr>
 " Set syntastic checker for python
 let g:syntastic_python_checkers = ['flake8']
 
-" Disable search highlighting on enter
-nnoremap <Cr> :noh<Cr>
+" Disable latex recompile after cursor hold to reduce flickering
+let g:livepreview_cursorhold_recompile = 0
+
+" Configure vimtex for nvim
+if has('nvim')
+	let g:vimtex_compiler_progname = 'nvr'
+endif
 
 " Set colorscheme
 colorscheme wal
+
+" Configure clipboard support for nvim
+set clipboard+=unnamedplus
