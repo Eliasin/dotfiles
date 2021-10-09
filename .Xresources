@@ -1,0 +1,11 @@
+URxvt.font: xft:mononoki Nerd Font Mono:style=Regular:size=10
+URxvt.boldFont: xft:mononoki Nerd Font Mono:style=Bold:size=10
+URxvt.italicFont: xft:mononoki Nerd Font Mono:style=Italic:size=10
+URxvt.boldItalicFont: xft:mononoki Nerd Font Mono:style=Bold Italic:size=10
+URxvt.scrollBar: false
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+URxvt.iso14755: false
+URxvt.iso14755_52: false
