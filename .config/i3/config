@@ -225,7 +225,7 @@ bindsym Control+Print exec gnome-screenshot -i
 bindsym $mod+Ctrl+l exec /home/steven/scripts/lock_screen
 
 # Start compton compositor
-exec --no-startup-id /usr/bin/compton -b
+exec --no-startup-id /usr/bin/picom -b
 
 # Start dunst notification server
 exec --no-startup-id dunst
