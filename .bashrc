@@ -137,20 +137,33 @@ ex ()
 }
 . "$HOME/.cargo/env"
 
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-# Not supported in the "fish" shell.
-(cat ~/.cache/wal/sequences &)
-
-# Alternative (blocks terminal for 0-3ms)
-cat ~/.cache/wal/sequences
-
-# To add support for TTYs this line can be optionally added.
-source ~/.cache/wal/colors-tty.sh
-
 # Add nvm config
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/Dotfiles --work-tree=$HOME'
+
+# Add some visual effects in not in emacs term
+if [ "$EMACS" = "" ]
+then
+    # Apply terminal theme
+
+	# wal
+    (cat ~/.cache/wal/sequences &)
+	# To add support for TTYs this line can be optionally added.
+	source ~/.cache/wal/colors-tty.sh
+
+	# wpgtk
+	#(cat $HOME/.config/wpg/sequences &)
+
+	# Change to vi mode
+	set -o vi
+fi
+
+# Use emacs as commit editor if terminal is inside emacs
+if [[ -n $INSIDE_EMACS ]]; then
+	export GIT_EDITOR="emacsclient"
+fi
+
+# Start starship
+eval "$(starship init bash)"

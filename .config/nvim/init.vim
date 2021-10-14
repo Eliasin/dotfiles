@@ -7,7 +7,7 @@
 
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
-runtime! debian.vim
+" runtime! debian.vim
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -42,6 +42,7 @@ Plugin 'xuhdev/vim-latex-live-preview'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'peitalin/vim-jsx-typescript'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'dag/vim-fish'
 
 call vundle#end()
 
@@ -197,3 +198,6 @@ set clipboard+=unnamedplus
 
 " Configure fallback tex flavor
 let g:tex_flavor = 'latex'
+
+" Configure syntax highlighting for fish
+autocmd FileType fish compiler fish

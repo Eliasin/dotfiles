@@ -7,3 +7,4 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export PATH=$PATH:/home/steven/.emacs.d/bin
 # Add local binaries to path
 export PATH=$PATH:/home/steven/.local/bin
+export EDITOR=nvim

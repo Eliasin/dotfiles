@@ -620,3 +620,6 @@ gears.timer.start_new(10, function() collectgarbage("step", 20000) return true e
 
 -- Start auth agent
 awful.spawn.with_shell("exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+
+-- Reapply theme
+awful.util.spawn("wal -R")
