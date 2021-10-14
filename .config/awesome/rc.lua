@@ -17,6 +17,8 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
+-- Enable shared tags across screens
+local sharedtags = require("awesome-sharedtags")
 
 -- Load Debian menu entries
 local debian = require("debian.menu")
@@ -186,16 +188,24 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local l = awful.layout.suit
+
+-- Each screen has its own tag table.
+local tags = sharedtags({
+	{ name = "browser", layout = l.floating },
+	{ name = "emacs", layout = l.floating },
+	{ name = "alt", layout = l.floating },
+	{ name = "multiterms", layout = l.tile },
+	{ name = "5", layout = l.tile },
+	{ name = "6", layout = l.tile },
+	{ name = "7", layout = l.tile },
+	{ name = "persistent-app", layout = l.floating },
+	{ name = "persistent-term", layout = l.tile },
+})
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
-
-	local names = { "browser", "emacs", "alt", "multiterms", "5", "6", "7", "persistent-app", "persistent-term" }
-	local l = awful.layout.suit
-	local layouts = { l.floating, l.floating, l.floating, l.tile, l.tile, l.tile, l.tile, l.floating, l.tile }
-
-    -- Each screen has its own tag table.
-    awful.tag(names, s, layouts)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -213,6 +223,10 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons
     }
+
+    for i = 1, 9 do
+        sharedtags.movetag(tags[i], s)
+    end
 
     -- Importing awesome wm widgets
     local battery_widget = require("awesome-wm-widgets.battery-widget.battery")
@@ -430,9 +444,9 @@ for i = 1, 9 do
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
                         local screen = awful.screen.focused()
-                        local tag = screen.tags[i]
+                        local tag = tags[i]
                         if tag then
-                           tag:view_only()
+                           sharedtags.viewonly(tag, screen)
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
@@ -440,9 +454,9 @@ for i = 1, 9 do
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
                       local screen = awful.screen.focused()
-                      local tag = screen.tags[i]
+                      local tag = tags[i]
                       if tag then
-                         awful.tag.viewtoggle(tag)
+                         sharedtags.viewtoggle(tag, screen)
                       end
                   end,
                   {description = "toggle tag #" .. i, group = "tag"}),
@@ -450,7 +464,7 @@ for i = 1, 9 do
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = client.focus.screen.tags[i]
+                          local tag = tags[i]
                           if tag then
                               client.focus:move_to_tag(tag)
                           end
@@ -461,7 +475,7 @@ for i = 1, 9 do
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
                       if client.focus then
-                          local tag = client.focus.screen.tags[i]
+                          local tag = tags[i]
                           if tag then
                               client.focus:toggle_tag(tag)
                           end
@@ -616,3 +630,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- Startup applications
 awful.util.spawn("picom")
+
+-- Start garbage collection timer
+gears.timer.start_new(10, function() collectgarbage("step", 20000) return true end)
