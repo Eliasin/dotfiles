@@ -20,10 +20,6 @@ require("awful.hotkeys_popup.keys")
 -- Enable shared tags across screens
 local sharedtags = require("awesome-sharedtags")
 
--- Load Debian menu entries
-local debian = require("debian.menu")
-local has_fdo, freedesktop = pcall(require, "freedesktop")
-
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -58,7 +54,7 @@ local volume_widget = require('awesome-wm-widgets.volume-widget.volume')
 beautiful.init("/home/steven/.config/awesome/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "rxvt"
+terminal = "urxvt"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -103,21 +99,9 @@ myawesomemenu = {
 local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 local menu_terminal = { "open terminal", terminal }
 
-if has_fdo then
-    mymainmenu = freedesktop.menu.build({
-        before = { menu_awesome },
-        after =  { menu_terminal }
-    })
-else
-    mymainmenu = awful.menu({
-        items = {
-                  menu_awesome,
-                  { "Debian", debian.menu.Debian_menu.Debian },
-                  menu_terminal,
-                }
-    })
-end
-
+mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon},
+	{ "open terminal", terminal }
+}})
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
@@ -633,3 +617,6 @@ awful.util.spawn("picom")
 
 -- Start garbage collection timer
 gears.timer.start_new(10, function() collectgarbage("step", 20000) return true end)
+
+-- Start auth agent
+awful.spawn.with_shell("exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
