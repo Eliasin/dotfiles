@@ -358,9 +358,9 @@ globalkeys = gears.table.join(
                   }
               end,
               {description = "lua execute prompt", group = "awesome"}),
-    awful.key({ modkey }, ";", function () awful.util.spawn("bash light -A 10") end,
+    awful.key({ modkey }, ";", function () awful.util.spawn("light -A 10") end,
         {description = "increase brightness", group = "env"}),
-    awful.key({ modkey, "Shift" }, ";", function () awful.util.spawn("bash light -U 10") end,
+    awful.key({ modkey, "Shift" }, ";", function () awful.util.spawn("light -U 10") end,
         {description = "decrease brightness", group = "env"}),
     awful.key({ modkey }, "]", function() volume_widget:inc() end,
         {description = "increase volume", group = "env" }),

@@ -17,9 +17,9 @@ if status is-interactive
         fish_vi_key_bindings
     end
 
-    if set -q "$INSIDE_EMACS"
-        set GIT_EDITOR="emacsclient"
-        set EDITOR="emacsclient"
+    if test -n "$INSIDE_EMACS"
+        set -gx GIT_EDITOR "emacsclient"
+        set -gx EDITOR "emacsclient"
     end
 
     starship init fish | source

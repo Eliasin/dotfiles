@@ -8,3 +8,4 @@ export PATH=$PATH:/home/steven/.emacs.d/bin
 # Add local binaries to path
 export PATH=$PATH:/home/steven/.local/bin
 export EDITOR=nvim
+

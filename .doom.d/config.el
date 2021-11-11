@@ -79,6 +79,8 @@
   (setq rustic-format-on-save t)
   (setq rustic-lsp-server 'rust-analyzer))
 
+(after! typescrip)
+
 (after! evil
   (setq evil-snipe-scope 'buffer)
   (setq evil-snipe-tab-increment t))
@@ -86,29 +88,6 @@
 ;; Sets tslint as the linter for the current buffer
 (defun use-eslint ()
   (flycheck-select-checker 'javascript-eslint)
-  )
-
-(use-package! flycheck
-  :defer
-  :config
-  ;; Setting eslint as the default linter for typescript files
-  (add-hook! 'typescript-mode-hook 'use-eslint)
-  ;; Editing the definitions for tslint to avoid creating temporary files
-  ;; that make Webpack's dev server ANGRY
-  (flycheck-define-checker typescript-tslint
-    "TypeScript style checker using TSLint.
-Note that this syntax checker is not used if
-`flycheck-typescript-tslint-config' is nil or refers to a
-non-existing file.
-See URL `https://github.com/palantir/tslint'."
-    :command ("tslint" "--format" "json"
-              (config-file "--config" flycheck-typescript-tslint-config)
-              (option "--rules-dir" flycheck-typescript-tslint-rulesdir)
-              (eval flycheck-tslint-args)
-              ;; This is normally source-inplace
-              source)
-    :error-parser flycheck-parse-tslint
-    :modes (typescript-mode))
   )
 
 ;; Enables persistent folds for vimish fold
