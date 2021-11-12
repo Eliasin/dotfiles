@@ -9,3 +9,5 @@ URxvt.keysym.Control-Meta-c: builtin-string:
 URxvt.keysym.Control-Meta-v: builtin-string:
 URxvt.iso14755: false
 URxvt.iso14755_52: false
+
+Xft.dpi: 130
