@@ -177,10 +177,10 @@ local l = awful.layout.suit
 -- Each screen has its own tag table.
 local tags = sharedtags({
 	{ name = "browser", layout = l.floating },
-	{ name = "emacs", layout = l.floating },
+	{ name = "editor", layout = l.floating },
 	{ name = "alt", layout = l.floating },
-	{ name = "multiterms", layout = l.tile },
-	{ name = "5", layout = l.tile },
+	{ name = "multiterm", layout = l.tile },
+	{ name = "ssh/sftp", layout = l.tile },
 	{ name = "6", layout = l.tile },
 	{ name = "7", layout = l.tile },
 	{ name = "persistent-app", layout = l.floating },
@@ -244,7 +244,6 @@ awful.screen.connect_for_each_screen(function(s)
             ram_widget(),
             brightness_widget(),
             battery_widget(),
-            mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -620,6 +619,12 @@ gears.timer.start_new(10, function() collectgarbage("step", 20000) return true e
 
 -- Start auth agent
 awful.spawn.with_shell("exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+
+-- Start network manager applet
+awful.spawn.with_shell("exec nm-applet")
+
+-- Start syncthing
+awful.spawn.with_shell("exec syncthing")
 
 -- Reapply theme
 awful.util.spawn("wal -R")
