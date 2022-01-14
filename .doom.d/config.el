@@ -79,8 +79,6 @@
   (setq rustic-format-on-save t)
   (setq rustic-lsp-server 'rust-analyzer))
 
-(after! typescrip)
-
 (after! evil
   (setq evil-snipe-scope 'buffer)
   (setq evil-snipe-tab-increment t))
@@ -92,3 +90,42 @@
 
 ;; Enables persistent folds for vimish fold
 (vimish-fold-global-mode 1)
+
+(after! lsp-rust
+  (setq lsp-rust-analyzer-experimental-proc-attr-macros t)
+  (setq lsp-rust-analyzer-proc-macro-enable t))
+
+
+(set-email-account!
+ "gmail"
+ '((mu4e-sent-folder       . "/gmail/[Gmail]/Sent Mail")
+   (mu4e-trash-folder      . "/gmail/[Gmail]/Bin")
+   (smtpmail-smtp-user     . "steven.pham.8.2000@gmail.com"))
+ t)
+(setq mu4e-get-mail-command "mbsync gmail"
+      ;; get emails and index every 5 minutes
+      mu4e-update-interval 300
+	  ;; send emails with format=flowed
+	  mu4e-compose-format-flowed t
+	  ;; no need to run cleanup after indexing for gmail
+	  mu4e-index-cleanup nil
+	  mu4e-index-lazy-check t
+      ;; more sensible date format
+      mu4e-headers-date-format "%d.%m.%y")
+
+(set-email-account!
+ "protonmail"
+ '((mu4e-sent-folder       . "/protonmail/sent")
+   (mu4e-trash-folder      . "/protonmail/trash")
+   (smtpmail-smtp-user     . "stevenv.pham@protonmail.com"))
+ nil)
+(setq mu4e-get-mail-command "mbsync protonmail"
+      ;; get emails and index every 5 minutes
+      mu4e-update-interval 300
+	  ;; send emails with format=flowed
+	  mu4e-compose-format-flowed t
+	  ;; no need to run cleanup after indexing for gmail
+	  mu4e-index-cleanup nil
+	  mu4e-index-lazy-check t
+      ;; more sensible date format
+      mu4e-headers-date-format "%d.%m.%y")
