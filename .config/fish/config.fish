@@ -14,7 +14,7 @@ if status is-interactive
         #(cat $HOME/.config/wpg/sequences &)
 
         # Change to vi mode
-        fish_vi_key_bindings
+		# fish_vi_key_bindings
     end
 
     if test -n "$INSIDE_EMACS"
