@@ -129,3 +129,22 @@
 	  mu4e-index-lazy-check t
       ;; more sensible date format
       mu4e-headers-date-format "%d.%m.%y")
+
+;; Rebind Toggle last popup from ~ to O
+(map! :leader
+      :desc "Toggle last popup"
+      "O" #'+popup/toggle)
+
+(map! :leader
+      "~" nil)
+
+;; Change evil mode to insert when selecting vterm window
+(defun change-to-insert-mode-in-vterm (&rest args)
+  (ignore args)
+  (let (
+        (current-mode (with-current-buffer (current-buffer) major-mode))
+        (is-new-window (not (eq (selected-window) (old-selected-window))))
+        )
+    (when (and is-new-window (eq current-mode 'vterm-mode)) (evil-insert-state))))
+
+(add-hook! 'window-selection-change-functions :append #'change-to-insert-mode-in-vterm)
