@@ -1,7 +1,6 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
-    alias edit="$EDITOR"
     alias dotfiles='/usr/bin/git --git-dir=$HOME/Dotfiles --work-tree=$HOME'
 
     if set -q "$EMACS"
@@ -21,6 +20,13 @@ if status is-interactive
         set -gx GIT_EDITOR "emacsclient"
         set -gx EDITOR "emacsclient"
     end
+    alias edit="$EDITOR"
 
+	# Setup starship
     starship init fish | source
+
+	# Setup rbenv
+	status --is-interactive; and rbenv init - fish | source
 end
+
+direnv hook fish | source
