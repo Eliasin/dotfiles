@@ -1,4 +1,4 @@
-URxvt.font: xft:mononoki Nerd Font Mono:style=Regular:size=10
+URxvt.font: xft:mononoki Nerd Font Mono:style=Regular:size=10, bdf:Siji:style=Regular
 URxvt.boldFont: xft:mononoki Nerd Font Mono:style=Bold:size=10
 URxvt.italicFont: xft:mononoki Nerd Font Mono:style=Italic:size=10
 URxvt.boldItalicFont: xft:mononoki Nerd Font Mono:style=Bold Italic:size=10
