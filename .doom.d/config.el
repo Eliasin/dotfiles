@@ -88,6 +88,11 @@
   (flycheck-select-checker 'javascript-eslint)
   )
 
+;; Sets tide as the linter for the current buffer
+(defun use-tide ()
+  (flycheck-select-checker 'tsx-tide)
+  )
+
 ;; Enables persistent folds for vimish fold
 (vimish-fold-global-mode 1)
 
@@ -148,3 +153,17 @@
     (when (and is-new-window (eq current-mode 'vterm-mode)) (evil-insert-state))))
 
 (add-hook! 'window-selection-change-functions :append #'change-to-insert-mode-in-vterm)
+
+(add-hook! 'after-init-hook #'global-prettier-mode)
+
+;; Adjust data read from proceses for LSP performance
+(setq read-process-output-max (* 1024 1024))
+
+;; Disable default js formatter when using lsp
+;; (after! lsp-mode
+;;   (setq lsp-javascript-format-enable nil)
+;;   (setq lsp-javascript-validate-enable nil)
+;;   (setq lsp-typescript-format-enable nil)
+;;   (setq lsp-typescript-suggest-enabled nil)
+;;   (setq lsp-typescript-validate-enable nil)
+;;   )
