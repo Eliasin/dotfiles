@@ -8,6 +8,6 @@ export PATH=$PATH:/home/steven/.emacs.d/bin
 # Add local binaries to path
 export PATH=$PATH:/home/steven/.local/bin
 # Add npm local binaries to path
-export PATH=$PATH:/home/steven/.npm-global
+export PATH=$PATH:/home/steven/.npm-global/bin
 export EDITOR=nvim
 
