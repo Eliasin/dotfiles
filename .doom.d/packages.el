@@ -51,3 +51,6 @@
 
 (package! platformio-mode)
 (package! graphviz-dot-mode)
+(package! prettier)
+(package! ccls)
+(package! straight :pin "3eca39d")

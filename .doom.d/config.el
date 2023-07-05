@@ -93,9 +93,6 @@
   (flycheck-select-checker 'tsx-tide)
   )
 
-;; Enables persistent folds for vimish fold
-(vimish-fold-global-mode 1)
-
 (after! lsp-rust
   (setq lsp-rust-analyzer-experimental-proc-attr-macros t)
   (setq lsp-rust-analyzer-proc-macro-enable t))
@@ -167,3 +164,62 @@
 ;;   (setq lsp-typescript-suggest-enabled nil)
 ;;   (setq lsp-typescript-validate-enable nil)
 ;;   )
+
+(use-package! dap-mode
+  :config
+  (require 'dap-gdb-lldb)
+  (dap-register-debug-template "Rust::GDB Run Configuration"
+                               (list :type "gdb"
+                                     :request "launch"
+                                     :name "GDB::Run"
+                                     :gdbpath "rust-gdb"
+                                     :target nil
+                                     :cwd nil))
+  )
+
+(map! :map dap-mode-map
+      :leader
+      :prefix ("d" . "dap")
+      ;; basics
+      :desc "dap next"          "n" #'dap-next
+      :desc "dap step in"       "i" #'dap-step-in
+      :desc "dap step out"      "o" #'dap-step-out
+      :desc "dap continue"      "c" #'dap-continue
+      :desc "dap hydra"         "h" #'dap-hydra
+      :desc "dap debug restart" "r" #'dap-debug-restart
+      :desc "dap debug"         "s" #'dap-debug
+      :desc "dap quit"          "q" #'+debugger/quit
+
+      ;; debug
+      :prefix ("dd" . "Debug")
+      :desc "dap debug recent"  "r" #'dap-debug-recent
+      :desc "dap debug last"    "l" #'dap-debug-last
+
+      ;; eval
+      :prefix ("de" . "Eval")
+      :desc "eval"                "e" #'dap-eval
+      :desc "eval region"         "r" #'dap-eval-region
+      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
+      :desc "add expression"      "a" #'dap-ui-expressions-add
+      :desc "remove expression"   "d" #'dap-ui-expressions-remove
+
+      :prefix ("db" . "Breakpoint")
+      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
+      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
+      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
+      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+
+(use-package! flycheck
+  :config
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc))
+  )
+
+(setq lsp-disabled-clients '(deno-ls))
+
+(setq +format-on-save-enabled-modes
+      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+	    sql-mode         ; sqlformat is currently broken
+	    tex-mode         ; latexindent is broken
+	    latex-mode
+            json-mode        ; do not murder someone else's formatting system
+            yaml-mode))
