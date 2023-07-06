@@ -222,4 +222,5 @@
 	    tex-mode         ; latexindent is broken
 	    latex-mode
             json-mode        ; do not murder someone else's formatting system
-            yaml-mode))
+            yaml-mode
+            markdown-mode))
