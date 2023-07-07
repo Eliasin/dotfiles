@@ -223,4 +223,6 @@
 	    latex-mode
             json-mode        ; do not murder someone else's formatting system
             yaml-mode
-            markdown-mode))
+            markdown-mode
+            typescript-mode  ; prettier covers these
+            javascript-mode))
