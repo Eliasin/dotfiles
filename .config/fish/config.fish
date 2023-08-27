@@ -30,3 +30,4 @@ if status is-interactive
 end
 
 direnv hook fish | source
+pyenv init - | source

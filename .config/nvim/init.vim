@@ -201,3 +201,6 @@ let g:tex_flavor = 'latex'
 
 " Configure syntax highlighting for fish
 autocmd FileType fish compiler fish
+
+" Hardcode system python3 install to skip past virtualenvs
+let g:python3_host_prog = '/usr/bin/python3'

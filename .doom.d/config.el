@@ -225,4 +225,13 @@
             yaml-mode
             markdown-mode
             typescript-mode  ; prettier covers these
-            javascript-mode))
+            javascript-mode
+            typescript-tsx-mode))
+
+
+; Change python tab settings
+(add-hook 'python-mode-hook
+      (lambda ()
+        (setq indent-tabs-mode t)
+        (setq tab-width 4)
+        (setq python-indent-offset 4)))
