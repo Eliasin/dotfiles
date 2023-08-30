@@ -11,7 +11,7 @@
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
-;;
+;
 ;; + `doom-font'
 ;; + `doom-variable-pitch-font'
 ;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
@@ -21,6 +21,10 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+
+(setq doom-font (font-spec :family "monospace" :size 14 :weight 'semi-light)
+	  doom-variable-pitch-font (font-spec :family "sans" :size 15))
+
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -226,7 +230,8 @@
             markdown-mode
             typescript-mode  ; prettier covers these
             javascript-mode
-            typescript-tsx-mode))
+            typescript-tsx-mode
+            sh-mode))
 
 
 ; Change python tab settings
