@@ -1,4 +1,5 @@
 {
+	"layer": "top",
     "height": 30, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": ["hyprland/workspaces", "idle_inhibitor", "pulseaudio", "backlight", "battery"],
@@ -20,7 +21,7 @@
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "calendar": {
                     "mode"          : "year",
-                    "mode-mon-col"  : 3,
+                    "mode-mon-col"  : 2,
                     "weeks-pos"     : "right",
                     "on-scroll"     : 1,
                     "on-click-right": "mode",
