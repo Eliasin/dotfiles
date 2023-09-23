@@ -11,7 +11,7 @@
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
-;
+                                        ;
 ;; + `doom-font'
 ;; + `doom-variable-pitch-font'
 ;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
@@ -23,7 +23,7 @@
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 (setq doom-font (font-spec :family "monospace" :size 14 :weight 'semi-light)
-	  doom-variable-pitch-font (font-spec :family "sans" :size 15))
+      doom-variable-pitch-font (font-spec :family "sans" :size 15))
 
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
@@ -65,12 +65,12 @@
          )
   (lambda ()
     (interactive)
-        (if is-on
-                (evil-window-set-height max)
-          (evil-window-set-height min)
-          )
-        (setq! is-on (not is-on))
-        )
+    (if is-on
+        (evil-window-set-height max)
+      (evil-window-set-height min)
+      )
+    (setq! is-on (not is-on))
+    )
   )
 
 (setq window-toggler (create-window-toggler 50 21))
@@ -111,11 +111,11 @@
 (setq mu4e-get-mail-command "mbsync gmail"
       ;; get emails and index every 5 minutes
       mu4e-update-interval 300
-	  ;; send emails with format=flowed
-	  mu4e-compose-format-flowed t
-	  ;; no need to run cleanup after indexing for gmail
-	  mu4e-index-cleanup nil
-	  mu4e-index-lazy-check t
+      ;; send emails with format=flowed
+      mu4e-compose-format-flowed t
+      ;; no need to run cleanup after indexing for gmail
+      mu4e-index-cleanup nil
+      mu4e-index-lazy-check t
       ;; more sensible date format
       mu4e-headers-date-format "%d.%m.%y")
 
@@ -128,11 +128,11 @@
 (setq mu4e-get-mail-command "mbsync protonmail"
       ;; get emails and index every 5 minutes
       mu4e-update-interval 300
-	  ;; send emails with format=flowed
-	  mu4e-compose-format-flowed t
-	  ;; no need to run cleanup after indexing for gmail
-	  mu4e-index-cleanup nil
-	  mu4e-index-lazy-check t
+      ;; send emails with format=flowed
+      mu4e-compose-format-flowed t
+      ;; no need to run cleanup after indexing for gmail
+      mu4e-index-cleanup nil
+      mu4e-index-lazy-check t
       ;; more sensible date format
       mu4e-headers-date-format "%d.%m.%y")
 
@@ -218,25 +218,27 @@
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc))
   )
 
-(setq lsp-disabled-clients '(deno-ls))
+(setq lsp-disabled-clients '(deno-ls ts-ls))
+
+(add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]node_modules")
 
 (setq +format-on-save-enabled-modes
       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
-	    sql-mode         ; sqlformat is currently broken
-	    tex-mode         ; latexindent is broken
-	    latex-mode
-            json-mode        ; do not murder someone else's formatting system
-            yaml-mode
-            markdown-mode
-            typescript-mode  ; prettier covers these
-            javascript-mode
-            typescript-tsx-mode
-            sh-mode))
+	sql-mode         ; sqlformat is currently broken
+	tex-mode         ; latexindent is broken
+	latex-mode
+        json-mode        ; do not murder someone else's formatting system
+        yaml-mode
+        markdown-mode
+        typescript-mode  ; prettier covers these
+        javascript-mode
+        typescript-tsx-mode
+        sh-mode))
 
 
-; Change python tab settings
+                                        ; Change python tab settings
 (add-hook 'python-mode-hook
-      (lambda ()
-        (setq indent-tabs-mode t)
-        (setq tab-width 4)
-        (setq python-indent-offset 4)))
+          (lambda ()
+            (setq indent-tabs-mode t)
+            (setq tab-width 4)
+            (setq python-indent-offset 4)))
