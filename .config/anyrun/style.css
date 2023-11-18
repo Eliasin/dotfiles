@@ -1,3 +1,12 @@
+@define-color light1 #fffcec;
+@define-color light2 #fba7ae;
+@define-color dark1 #bb4952;
+@define-color dark2 #a74545;
+@define-color dark3 #734048;
+@define-color dark4 #210d20;
+
+@define-color theme_bg_color @dark4;
+
 #window {
   background-color: rgba(0, 0, 0, 0);
 }
@@ -25,6 +34,7 @@ label#plugin {
 }
 
 entry {
-	font-size: 30px;
-	padding: 15px;
+  font-size: 30px;
+  padding: 15px;
+  background-color: @theme_bg_color;
 }

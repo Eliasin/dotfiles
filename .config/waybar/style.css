@@ -1,12 +1,29 @@
+@define-color light1 #fffcec;
+@define-color light2 #fba7ae;
+@define-color dark1 #bb4952;
+@define-color dark2 #a74545;
+@define-color dark3 #734048;
+@define-color dark4 #210d20;
+
 * {
     /* `otf-font-awesome` is required to be installed for icons */
     font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+}
+
+.modules-left {
+	font-size: 14px;
+}
+
+.modules-center {
+	font-size: 14px;
+}
+
+.modules-right {
+	font-size: 14px;
 }
 
 window#waybar {
     background-color: rgba(0, 0, 0, 0.0);
-	margin-bottom: 10px;
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -86,12 +103,13 @@ button:hover {
 #tray,
 #mode,
 #scratchpad,
+#pipewire,
 #mpd {
     padding: 5px 15px 5px 15px;
 	margin-right: 3px;
 	margin-left: 3px;
 	border-radius: 10px;
-    color: #ffffff;
+    color: @light1;
 }
 
 
@@ -101,19 +119,16 @@ button:hover {
 	margin-right: 3px;
 	margin-left: 3px;
 	border-radius: 10px;
-    color: #ffffff;
+    color: @light1;
 }
 
 #window,
 #workspaces {
-    margin: 0 4px;
-	min-width: 200px;
+	min-width: 300px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
-	margin-right: 15px;
 }
 
 /* If workspaces is the rightmost module, omit right margin */
@@ -122,17 +137,16 @@ button:hover {
 }
 
 #clock {
-    background-color: #454f57;
+    background-color: #d87c63;
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: @dark3;
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: @light1;
+    background-color: @dark4;
 }
 
 @keyframes blink {
@@ -143,8 +157,8 @@ button:hover {
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: #c22323;
+    color: @light1;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -157,12 +171,11 @@ label:focus {
 }
 
 #cpu {
-    background-color: #1fb85f;
-    color: #000000;
+    background-color: @dark4;
 }
 
 #memory {
-    background-color: #553c5e;
+    background-color: @dark4;
 }
 
 #disk {
@@ -170,25 +183,30 @@ label:focus {
 }
 
 #backlight {
-    background-color: #90b1b1;
+    background-color: @dark4;
 }
 
 #network {
-    background-color: #5c7f9c;
+    background-color: @dark4;
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    background-color: @dark4;
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+    background-color: @dark4;
+    color: @light1;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    background-color: @dark3;
+    color: @light1;
+}
+
+#pipewire {
+    background-color: #fff0f5;
+    color: #000000;
 }
 
 #wireplumber {
@@ -215,7 +233,7 @@ label:focus {
 }
 
 #temperature {
-    background-color: #f0932b;
+    background-color: @dark4;
 }
 
 #temperature.critical {
@@ -223,7 +241,8 @@ label:focus {
 }
 
 #tray {
-    background-color: #2980b9;
+    background-color: @dark3;
+	margin-right: 10px;
 }
 
 #tray > .passive {
@@ -232,16 +251,16 @@ label:focus {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb4d4b;
+    background-color: @dark2;
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
+    background-color: @dark4;
 }
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+    background-color: @light2;
+    color: @light1;
 }
 
 #mpd {
@@ -291,4 +310,35 @@ label:focus {
 
 #scratchpad.empty {
 	background-color: transparent;
+}
+
+#workspaces {
+	padding-left: 10px;
+	padding-right: 12px;
+	margin-left: 14px;
+	margin-right: 3px;
+	border-radius: 5px;
+	transition: none;
+	font-size: 14px;
+	background-color: @dark4;
+}
+
+#workspaces button {
+	transition: none;
+	color: @light2;
+	background: transparent;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	border-radius: 0px;
+}
+
+#workspaces button.focused {
+	color: @light1;
+	border-bottom: 2px solid @light1;
+}
+
+#workspaces button:hover {
+	transition: none;
 }

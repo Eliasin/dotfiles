@@ -167,3 +167,4 @@ fi
 
 # Start starship
 eval "$(starship init bash)"
+
