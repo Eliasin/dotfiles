@@ -63,7 +63,7 @@ client.unfocused $dark1 $dark1 $light1 $contrast
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-exec wbg ~/Pictures/red_moon_3x2.jpg
+exec swaybg -i ~/Pictures/red_moon_3x2.jpg -m fit
 #
 # Example configuration:
 #
@@ -300,5 +300,6 @@ exec nm-applet
 exec copyq --start-server
 exec udiskie
 exec mako
+exec "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 include /etc/sway/config.d/*
