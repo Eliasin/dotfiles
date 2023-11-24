@@ -63,8 +63,9 @@ client.unfocused $dark1 $dark1 $light1 $contrast
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-exec swaybg -i ~/Pictures/red_moon_3x2.jpg -m fit
-#
+exec swaybg -i ~/Pictures/red_moon_3x2.jpg -m fit --output eDP-1
+exec swaybg -i ~/Pictures/red_moon.jpg -m fill --output DP-2
+
 # Example configuration:
 #
 #   output HDMI-A-1 resolution 1920x1080 position 1920,0
