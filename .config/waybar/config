@@ -5,7 +5,7 @@
     "spacing": 4, // Gaps between modules (4px)
     "modules-left": ["sway/workspaces", "idle_inhibitor", "pulseaudio", "backlight", "battery"],
     "modules-center": ["clock"],
-    "modules-right": ["network", "cpu", "memory", "temperature", "tray"],
+    "modules-right": ["custom/ghprs", "network", "cpu", "memory", "temperature", "tray"],
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -127,6 +127,12 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-    }
+    },
+	"custom/ghprs": {
+		"exec": "/home/steven/pr_count.sh",
+		"format": "{}",
+		"interval": 10,
+		"on-click": ""
+	}
 }
 

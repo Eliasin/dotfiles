@@ -103,6 +103,10 @@ exec swayidle -w timeout 300 "${HOME}/lock.sh" timeout 600 'wlr-randr --output e
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+input type:touchpad {
+	tap enabled
+}
+
 input type:keyboard {
 	repeat_delay 280
 	repeat_rate 40
@@ -296,11 +300,14 @@ gaps inner 8
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+exec ~/pause_when_audo_disconnect.sh
+
 exec waybar
 exec nm-applet
 exec copyq --start-server
 exec udiskie
 exec mako
+exec ghprsd .ghprs.toml
 exec "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 include /etc/sway/config.d/*

@@ -104,6 +104,7 @@ button:hover {
 #mode,
 #scratchpad,
 #pipewire,
+#custom-ghprs,
 #mpd {
     padding: 5px 15px 5px 15px;
 	margin-right: 3px;
@@ -134,6 +135,10 @@ button:hover {
 /* If workspaces is the rightmost module, omit right margin */
 .modules-right > widget:last-child > #workspaces {
     margin-right: 0;
+}
+
+#custom-ghprs {
+    background-color: @dark4;
 }
 
 #clock {
