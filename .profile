@@ -6,6 +6,8 @@ export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 export PATH=$PATH:/home/steven/.config/emacs/bin
 # Add local binaries to path
 export PATH=$PATH:/home/steven/.local/bin
+# Add cargo binaries to path
+export PATH=$PATH:/home/steven/.cargo/bin
 # Add npm local binaries to path
 export PATH=$PATH:/home/steven/.npm-global/bin
 # Add zig to path
