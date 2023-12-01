@@ -276,8 +276,8 @@ bar {
 focus_wrapping workspace
 
 
-bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+
-bindsym --locked XF86AudioLowerVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && scripts/show_volume.sh
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%- && scripts/show_volume.sh
 bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
 # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
@@ -291,8 +291,7 @@ bindsym --locked XF86MonBrightnessUp exec brightnessctl s 5%+
 bindsym --locked XF86MonBrightnessDown exec brightnessctl s 5%-
 
 bindsym Print exec ${HOME}/screenshot.sh
-bindsym $mod+Shift+D exec makoctl dismiss
-bindsym $mod+Ctrl+D exec makoctl restore
+bindsym $mod+Shift+D exec fnottctl dismiss
 
 gaps outer 8
 gaps inner 8
@@ -300,14 +299,16 @@ gaps inner 8
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+exec playerctld daemon
 exec ~/pause_when_audo_disconnect.sh
+exec ~/setup_wob.sh 
 
 exec waybar
 exec nm-applet
 exec copyq --start-server
 exec udiskie
-exec mako
-exec ghprsd .ghprs.toml
+exec fnott
+exec ghprsd .ghprs.toml --session-file-path /home/steven/.ghprs-sessions.json
 exec "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 include /etc/sway/config.d/*

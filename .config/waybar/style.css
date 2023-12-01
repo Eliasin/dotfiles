@@ -105,6 +105,8 @@ button:hover {
 #scratchpad,
 #pipewire,
 #custom-ghprs,
+#bluetooth,
+#privacy,
 #mpd {
     padding: 5px 15px 5px 15px;
 	margin-right: 3px;
@@ -147,6 +149,14 @@ button:hover {
 
 #battery {
     background-color: @dark3;
+}
+
+#bluetooth {
+    background-color: @dark4;
+}
+
+#privacy {
+    background-color: @dark4;
 }
 
 #battery.charging, #battery.plugged {
