@@ -87,7 +87,7 @@ exec way-displays > /tmp/way-displays.${XDG_VTNR}.${USER}.log 2>&1
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
-exec swayidle -w timeout 300 "${HOME}/lock.sh" timeout 600 'wlr-randr --output eDP-1 --off; wlr-randr --output DP-3 --off' timeout 1200 'systemctl suspend' resume 'wlr-randr --output eDP-1 --on; wlr-randr --output DP-3 --on' before-sleep "playerctl pause; ${HOME}/lock.sh 0"
+exec swayidle -w timeout 300 "lock.sh" timeout 600 'wlr-randr --output eDP-1 --off; wlr-randr --output DP-3 --off' timeout 1200 'systemctl suspend' resume 'wlr-randr --output eDP-1 --on; wlr-randr --output DP-3 --on' before-sleep "playerctl pause; lock.sh 0"
 
 ### Input configuration
 #
@@ -276,8 +276,8 @@ bar {
 focus_wrapping workspace
 
 
-bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && scripts/show_volume.sh
-bindsym --locked XF86AudioLowerVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%- && scripts/show_volume.sh
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && show_volume.sh
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%- && show_volume.sh
 bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 
 # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
@@ -287,10 +287,10 @@ bindsym --locked XF86AudioPrev exec playerctl previous
 bindsym --locked XF86AudioNext exec playerctl next
 
 # Control screen backlight brightness with light
-bindsym --locked XF86MonBrightnessUp exec brightnessctl s 5%+
-bindsym --locked XF86MonBrightnessDown exec brightnessctl s 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl s 5%+ && show_brightness.sh
+bindsym --locked XF86MonBrightnessDown exec brightnessctl s 5%- && show_brightness.sh
 
-bindsym Print exec ${HOME}/screenshot.sh
+bindsym Print exec screenshot.sh
 bindsym $mod+Shift+D exec fnottctl dismiss
 
 gaps outer 8
@@ -300,15 +300,15 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 exec playerctld daemon
-exec ~/pause_when_audo_disconnect.sh
-exec ~/setup_wob.sh 
+exec pause_when_audo_disconnect.sh
+exec setup_wob.sh 
 
 exec waybar
 exec nm-applet
 exec copyq --start-server
 exec udiskie
 exec fnott
-exec ghprsd .ghprs.toml --session-file-path /home/steven/.ghprs-sessions.json
+exec ghprsd .ghprs.toml
 exec "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 include /etc/sway/config.d/*

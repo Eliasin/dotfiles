@@ -12,6 +12,8 @@ export PATH=$PATH:/home/steven/.cargo/bin
 export PATH=$PATH:/home/steven/.npm-global/bin
 # Add zig to path
 export PATH=$PATH:/home/steven/.local/lib/zig-linux-x86_64-0.10.1
+# Add util scripts to path
+export PATH=$PATH:/home/steven/scripts
 export EDITOR=nvim
 
 export XCURSOR_SIZE=24

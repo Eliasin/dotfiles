@@ -129,7 +129,7 @@
         // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
     },
 	"custom/ghprs": {
-		"exec": "/home/steven/pr_count.sh",
+		"exec": "pr_count.sh",
 		"format": "{}",
 		"interval": 10,
 		"on-click": ""
