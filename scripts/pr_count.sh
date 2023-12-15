@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if NUM_OPEN_PRS=$(ghp -s d count); then
+if NUM_OPEN_PRS=$(ghp count); then
 	if [ "$NUM_OPEN_PRS" -eq 0 ]; then
 		echo    󰔓
 	else
